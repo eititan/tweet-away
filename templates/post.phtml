@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Tweet Away</title>
+    <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+
+        body {
+            margin: 15px 0 0 0;
+            padding: 0;
+            width: 100%;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-align: center;
+            background-color: #dfcaae;
+            font-size: 18px;
+        }
+        h1 {
+            color: #719e40;
+            letter-spacing: -3px;
+            font-family: 'Lato', sans-serif;
+            font-size: 65px;
+            font-weight: 200;
+            margin-bottom: 0;
+        }
+
+        div.cust {
+            margin-top:200px; 
+        }
+    </style>
+</head>
+<body>
+    <?php?>
+    <div class="container text-center cust">
+        <form action="/chat" name="postForm" id="postForm" method= "post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label class="float-left" for="username">Valid Username</label>
+                <input type="username" class="form-control" id="username" name= "user" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <label class = "float-left" for="post">Juicy post area</label>
+                <textarea class="form-control" id="post-text" name="post" placeholder="Your post goes here.." rows="5" required></textarea>
+            </div>
+            <div class = "form-group float-left">
+                <button id="post-btn" class="btn btn-primary rounded">Click To Post</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+<script>
+function validateForm() {
+    var username = document.forms["postForm"]["user"].value;
+    var usernameRegex = /^[0-9a-zA-Z]+$/;
+    if (!username.match(usernameRegex)) {
+        alert("Username must contain alphanumeric or numbers only");
+        return false;
+    }
+    document.getElementById("postForm").submit();
+}
+</script>

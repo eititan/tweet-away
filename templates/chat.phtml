@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Tweet Away</title>
+    <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+
+        body {
+            margin: 15px 0 0 0;
+            padding: 0;
+            width: 100%;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-align: center;
+            background-color: #dfcaae;
+            font-size: 18px;
+        }
+        h1 {
+            color: #719e40;
+            letter-spacing: -3px;
+            font-family: 'Lato', sans-serif;
+            font-size: 65px;
+            font-weight: 200;
+            margin-bottom: 0;
+        }
+
+        div.daaa {
+            height:auto ;
+            background-color: #787878;
+            border-radius: 15px;
+            margin-top:50px;
+            max-width:100%;
+        
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-4">
+                <img src="tweetaway.png" height="100" width="130"/>
+            </div>
+            <div class="col-sm-4">
+                <h1>Tweet Away</h1>
+            </div>
+        
+        </div>
+    </div>
+
+    <div class="container rounded ajax">
+        
+            <?php foreach($data as $d): ?>
+            
+                <div class="row daaa mw-100">
+                    <div class="rounded m-3 border border-light col">
+
+                        <div class = "row">
+                            <div class="mt-3 ml-3 float-left mw-100 text-white">  <?php echo $d->username; ?> </div>
+                        </div>
+
+                        <div class = "row">
+                            <div class="mt-3 ml-5 text-white">  <?php echo $d->post_message; ?> </div>
+                        </div>
+
+                        <div class = "row">
+                            <div class= "col">
+                                <div class="float-right mt-3 mb-3 text-white">  <?php echo $d->posted_on; ?> </div>
+                            </div>
+                        </div>
+
+                    </div> 
+                </div>
+            <?php endforeach;?>   
+
+        
+    </div>
+
+
+    <div class="container mt-3 mb-3">
+        <div class = "row">
+            <button id="redirect-btn" class="btn btn-primary rounded">Click To Post</button>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        setInterval(fetchdata,5000);
+    });
+
+    function fetchdata(){
+        $.ajax({
+            url: '/ajaxGet',
+            type: 'post',
+            success: function(response){
+                $('.ajax').html(response);
+            },
+            error: function(data){
+                alert("error");
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
+    document.getElementById("redirect-btn").onclick = function () {
+        location.href = "/post";
+    };
+
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
