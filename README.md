@@ -1,15 +1,6 @@
 # HW05 Multiple User Feed
 
-## <John Hutchins>
-
-### Initial Setup
-
-* Run `composer install`.
-* MySQL Host: 67.205.183.11
-* MySQL Port: 3306
-* MySQL Database Name: feed_<weber state username> 
-* MySQL Username: <weber state username>
-* MySQL Password: changeme
+<John Hutchins>
 
 ### Problem Statement
 
